@@ -28,4 +28,4 @@ class startupHandlermin {
     }
   }
   
-  module.exports = startupHandler;
+  module.exports = startupHandlermin;
