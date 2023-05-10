@@ -5,6 +5,7 @@ const fs = require('fs-extra');
 
 const StartupHandler = require('./utils/startup_handler');
 const ListenHandler = require('./utils/listen_handler');
+const StartupHandlermin = require('./utils/startup_handler_min');
 
 const SYSTRAY_ICON = path.join(__dirname, '/assets/system-tray-icon.png');
 const home_dir = app.getPath('home');
@@ -114,6 +115,7 @@ if (!gotTheLock) {
 
     const startup_handler = new StartupHandler(app);
     const listen_handler = new ListenHandler(app);
+    const startup_handler = new StartupHandlermin(app);
 
     // context menu when hover on tray icon
     const contextMenu = Menu.buildFromTemplate([
@@ -151,6 +153,14 @@ if (!gotTheLock) {
         checked: startup_handler.is_enabled,
         click: function () {
           startup_handler.toggle();
+        },
+      },
+      {
+        label: 'Enable at Startup Minimized',
+        type: 'checkbox',
+        checked: startup_handler_min.is_enabled,
+        click: function () {
+          startup_handler_min.toggle();
         },
       },
       {
